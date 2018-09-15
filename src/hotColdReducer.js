@@ -60,7 +60,10 @@ export default (state = initialState, action) => {
     }
 
     // return back the state with the new feedback and guess
-    return Object.assign({}, state, { feedback, guess });
+    return Object.assign({}, state, { 
+      feedback, 
+      guesses: [...state.guesses, guess]
+    });
   }
 
   // update aural status
