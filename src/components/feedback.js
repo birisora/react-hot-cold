@@ -1,8 +1,10 @@
 import React from 'react';
+// import connect
+import { connect } from 'react-redux';
 
 import './feedback.css';
 
-export default function Feedback(props) {
+export function Feedback(props) {
   /** 
    * Below, we'll use the guessCount to generate a key so that React treats the feedback message 
    * as a DOM change, even when a guess does not change the feedback text.
@@ -26,3 +28,12 @@ export default function Feedback(props) {
     </h2>
   );
 }
+
+// grab the states we want
+const mapStateToProps = state => ({
+  guessCount: state.guessCount,
+  feedback: state.feedback
+});
+
+// use connect to apply store features to Feedback
+export default connect(mapStateToProps)(Feedback);

@@ -19,7 +19,7 @@ const initialState = {
 
 // we pass in a state and action
 export default (state = initialState, action) => {
-  // console.log('cheater! current answer is: ', state.correctAnswer);
+  console.log('cheater! current answer is: ', state.correctAnswer);
   // check if action is to restart game
   if (action.type === RESTART_GAME) {
     console.log('restarting game!', action.correctAnswer);
@@ -31,10 +31,39 @@ export default (state = initialState, action) => {
     });
   }
 
+  // makeing a guess
   if (action.type === MAKE_GUESS) {
-    console.log('MAKE GUESS');
+    console.log('MAKE GUESS', action.guess);
+    let feedback;
+    let guess = parseInt(action.guess, 10);
+    if (isNaN(guess)) {
+      // can't use this.setState so
+      feedback = 'Please enter a valid number';
+      return Object.assign({}, state, {
+        feedback,
+        guesses: [...state.guesses, guess]
+      });
+    }
+
+    const difference = Math.abs(guess - state.correctAnswer);
+
+    if (difference >= 50) {
+      feedback = 'You\'re Ice Cold...';
+    } else if (difference >= 30) {
+      feedback = 'You\'re Cold...';
+    } else if (difference >= 10) {
+      feedback = 'You\'re Warm.';
+    } else if (difference >= 1) {
+      feedback = 'You\'re Hot!';
+    } else {
+      feedback = 'You got it!';
+    }
+
+    // return back the state with the new feedback and guess
+    return Object.assign({}, state, { feedback, guess });
   }
 
+  // update aural status
   if (action.type === GENERATE_AURAL_UPDATE) {
     console.log('GENERATE AURAL UPDATE');
     // copied from action.js
