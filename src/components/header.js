@@ -5,12 +5,11 @@ import TopNav from './top-nav';
 import './header.css';
 
 export default function Header(props) {
+  // don't need to pass in the action references for restartgame and 
+  // auralheader anymore
   return (
     <header>
-      <TopNav
-        onGenerateAuralUpdate={() => props.onGenerateAuralUpdate()}
-        onRestartGame={() => props.onRestartGame()}
-      />
+      <TopNav/>
       <h1>HOT or COLD</h1>
     </header>
   );

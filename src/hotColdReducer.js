@@ -21,6 +21,7 @@ const initialState = {
 export default (state = initialState, action) => {
   // check if action is to restart game
   if (action.type === RESTART_GAME) {
+    console.log('restarting game!');
     return Object.assign({}, state, {
       guesses: [],
       feedback: 'Make your guess!',

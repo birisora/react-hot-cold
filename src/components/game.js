@@ -15,15 +15,15 @@ export default class Game extends React.Component {
       correctAnswer: Math.floor(Math.random() * 100) + 1
     };
   }
-
-  restartGame() {
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.floor(Math.random() * 100) + 1
-    });
-  }
+  // removed retart from here so need to edit in top-nav.js
+  // restartGame() {
+  //   this.setState({
+  //     guesses: [],
+  //     feedback: 'Make your guess!',
+  //     auralStatus: '',
+  //     correctAnswer: Math.floor(Math.random() * 100) + 1
+  //   });
+  // }
 
   makeGuess(guess) {
     guess = parseInt(guess, 10);
@@ -82,10 +82,7 @@ export default class Game extends React.Component {
 
     return (
       <div>
-        <Header
-          onRestartGame={() => this.restartGame()}
-          onGenerateAuralUpdate={() => this.generateAuralUpdate()}
-        />
+        <Header />
         <main role="main">
           <GuessSection
             feedback={feedback}
