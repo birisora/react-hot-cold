@@ -1,8 +1,11 @@
 import React from 'react';
+// import connect
+import { connect } from 'react-redux';
 
 import './guess-list.css';
 
-export default function GuessList(props) {
+// remove default since connect is default
+export function GuessList(props) {
   const guesses = props.guesses.map((guess, index) => (
     <li key={index}>
       {guess}
@@ -15,3 +18,11 @@ export default function GuessList(props) {
     </ul>
   );
 }
+
+// use mapStateToProps to grab states we want to use
+const mapStateToProps = state => ({
+  guesses: state.guesses
+});
+
+// create a factory component with additional features
+export default connect(mapStateToProps)(GuessList);

@@ -14,6 +14,7 @@ export default class Game extends React.Component {
       auralStatus: '',
       correctAnswer: Math.floor(Math.random() * 100) + 1
     };
+    console.log('cheater! current answer is: ', this.state.correctAnswer);
   }
   // removed retart from here so need to edit in top-nav.js
   // restartGame() {
@@ -59,22 +60,22 @@ export default class Game extends React.Component {
     document.title = feedback ? `${feedback} | Hot or Cold` : 'Hot or Cold';
   }
 
-  generateAuralUpdate() {
-    const { guesses, feedback } = this.state;
+  // generateAuralUpdate() {
+  //   const { guesses, feedback } = this.state;
 
-    // If there's not exactly 1 guess, we want to
-    // pluralize the nouns in this aural update.
-    const pluralize = guesses.length !== 1;
+  //   // If there's not exactly 1 guess, we want to
+  //   // pluralize the nouns in this aural update.
+  //   const pluralize = guesses.length !== 1;
 
-    let  auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
+  //   let  auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
 
-    if (guesses.length > 0) {
-      auralStatus += ` ${pluralize ? 'In order of most- to least-recent, they are' : 'It was'}: ${guesses.reverse().join(', ')}`;
-    }
+  //   if (guesses.length > 0) {
+  //     auralStatus += ` ${pluralize ? 'In order of most- to least-recent, they are' : 'It was'}: ${guesses.reverse().join(', ')}`;
+  //   }
 
 
-    this.setState({ auralStatus });
-  }
+  //   this.setState({ auralStatus });
+  // }
 
   render() {
     const { feedback, guesses, auralStatus } = this.state;
@@ -89,9 +90,7 @@ export default class Game extends React.Component {
             guessCount={guessCount}
             onMakeGuess={guess => this.makeGuess(guess)}
           />
-          <StatusSection guesses={guesses} 
-            auralStatus={auralStatus}
-          />
+          <StatusSection />
           <InfoSection />
         </main>
       </div>
